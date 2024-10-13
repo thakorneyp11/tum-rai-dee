@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TumRaiDee - Activity Swiper</title>
+    <style>
+        :root {
+            --primary-color: #00B894;
+            --secondary-color: #FFA502;
+            --accent-color: #5F27CD;
+            --background-color: #FBFBFB;
+            --text-color: #333333;
+        }
+        body, html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .burger-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        .main-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .activity-card {
+            width: 100%;
+            height: calc(100vh - 130px);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .image-carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .activity-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .carousel-nav {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .carousel-dot.active {
+            background-color: white;
+        }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            color: white;
+        }
+        .activity-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .activity-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .action-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .dislike { color: #ff4757; }
+        .soso { color: var(--accent-color); }
+        .like { color: var(--secondary-color); }
+        .more-details { color: var(--primary-color); }
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            background-color: white;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 12px;
+        }
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        .nav-item.active .nav-icon {
+            color: var(--primary-color);
+        }
+        .nav-item.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">TumRaiDee</div>
+            <div class="burger-icon">☰</div>
+        </header>
+        
+        <main class="main-content">
+            <div class="activity-card">
+                <div class="image-carousel">
+                    <div class="activity-image">
+                        [Activity Image 1]
+                    </div>
+                    <div class="carousel-nav">
+                        <div class="carousel-dot active"></div>
+                        <div class="carousel-dot"></div>
+                        <div class="carousel-dot"></div>
+                    </div>
+                </div>
+                <div class="image-overlay">
+                    <h2 class="activity-title">Visit Grand Palace</h2>
+                    <p class="activity-description">Explore the beautiful Grand Palace in Bangkok. Immerse yourself in Thai culture and history with this iconic landmark. The Grand Palace has been the official residence of the Kings of Siam (and later Thailand) since 1782.</p>
+                    <div class="action-buttons">
+                        <button class="action-button dislike">✗</button>
+                        <button class="action-button soso">😐</button>
+                        <button class="action-button like">♥</button>
+                        <button class="action-button more-details">ℹ️</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                Main
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⭐</span>
+                Favorites
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">📅</span>
+                History
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon">👥</span>
+                Friends
+            </a>
+        </footer>
+    </div>
+</body>
+</html>

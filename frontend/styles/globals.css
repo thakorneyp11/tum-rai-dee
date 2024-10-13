@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #00B894;
+  --primary-color-dark: #009B7D;
+  --secondary-color: #FFA502;
+  --secondary-color-dark: #E69400;
+  --accent-color: #5F27CD;
+  --accent-color-dark: #4E1FAB;
+  --background-color: #FBFBFB;
+  --text-color: #333333;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
