@@ -10,8 +10,7 @@ const Home: React.FC = () => {
 
   const handleAction = useCallback((action: 'dislike' | 'soso' | 'like' | 'moreinfo') => {
     if (action === 'moreinfo') {
-      // Handle more info action
-      console.log('More info for activity:', currentActivityId);
+      // The 'moreinfo' action is now handled within the ActivityCard component
       return;
     }
 

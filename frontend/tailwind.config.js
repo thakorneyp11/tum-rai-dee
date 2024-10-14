@@ -7,18 +7,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: 'var(--primary-color)',
-          dark: 'var(--primary-color-dark)',
-        },
-        secondary: {
-          DEFAULT: 'var(--secondary-color)',
-          dark: 'var(--secondary-color-dark)',
-        },
-        accent: {
-          DEFAULT: 'var(--accent-color)',
-          dark: 'var(--accent-color-dark)',
-        },
+        primary: 'var(--primary-color)',
+        secondary: 'var(--secondary-color)',
+        accent: 'var(--accent-color)',
         background: 'var(--background-color)',
         text: 'var(--text-color)',
       },
