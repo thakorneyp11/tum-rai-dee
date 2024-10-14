@@ -57,11 +57,11 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
         {activity.images && activity.images.length > 1 && (
           <>
             <button 
-              className="absolute left-0 top-0 w-1/4 h-full opacity-0"
+              className="absolute left-0 top-8 w-1/4 h-3/5 opacity-0 z-10"
               onClick={() => handleImageChange('prev')}
             />
             <button 
-              className="absolute right-0 top-0 w-1/4 h-full opacity-0"
+              className="absolute right-0 top-8 w-1/4 h-3/5 opacity-0 z-10"
               onClick={() => handleImageChange('next')}
             />
           </>
