@@ -3,14 +3,14 @@ import { getActivities, Activity } from '../utils/activityData';
 
 interface ActivityContextType {
   activities: Activity[];
-  currentActivity: Activity | null;
-  setCurrentActivity: React.Dispatch<React.SetStateAction<Activity | null>>;
+  currentActivityId: number | null;
+  setCurrentActivityId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export const ActivityContext = createContext<ActivityContextType>({
   activities: [],
-  currentActivity: null,
-  setCurrentActivity: () => {},
+  currentActivityId: null,
+  setCurrentActivityId: () => {},
 });
 
 interface ActivityProviderProps {
@@ -19,21 +19,23 @@ interface ActivityProviderProps {
 
 export function ActivityProvider({ children }: ActivityProviderProps) {
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [currentActivity, setCurrentActivity] = useState<Activity | null>(null);
+  const [currentActivityId, setCurrentActivityId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchActivities = async () => {
       const data = await getActivities();
       setActivities(data);
-      setCurrentActivity(data[0]);
+      if (data.length > 0) {
+        setCurrentActivityId(data[0].id);
+      }
     };
     fetchActivities();
   }, []);
 
   const value = {
     activities,
-    currentActivity,
-    setCurrentActivity,
+    currentActivityId,
+    setCurrentActivityId,
   };
 
   return <ActivityContext.Provider value={value}>{children}</ActivityContext.Provider>;

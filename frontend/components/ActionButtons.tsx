@@ -1,6 +1,10 @@
 import React from 'react';
 
-const ActionButtons: React.FC = () => {
+interface ActionButtonsProps {
+  onAction: (action: 'dislike' | 'soso' | 'like' | 'moreinfo') => void;
+}
+
+const ActionButtons: React.FC<ActionButtonsProps> = ({ onAction }) => {
   return (
     <div className="flex justify-around">
       {[
@@ -12,7 +16,7 @@ const ActionButtons: React.FC = () => {
         <button
           key={index}
           className={`w-12 h-12 rounded-full bg-white shadow-md text-2xl flex justify-center items-center ${button.color} ${button.hoverColor} transition-all duration-200 ease-in-out hover:shadow-lg transform hover:-translate-y-1`}
-          onClick={() => console.log('button clicked as ' + button.value)}
+          onClick={() => onAction(button.value as 'dislike' | 'soso' | 'like' | 'moreinfo')}
         >
           {button.label}
         </button>

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ActionButtons from './ActionButtons';
 import { Activity } from '../utils/activityData';
 
 interface ActivityCardProps {
   activity: Activity;
+  onAction: (action: 'dislike' | 'soso' | 'like' | 'moreinfo') => void;
 }
 
-const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({ activity, onAction }) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+// Reset currentImageIndex when activity changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [activity.id]);
 
   const toggleDescription = () => {
     setIsDescriptionExpanded(!isDescriptionExpanded);
@@ -77,7 +83,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
         >
           <p>{activity.description}</p>
         </div>
-        <ActionButtons />
+        <ActionButtons onAction={onAction} />
       </div>
     </div>
   );
